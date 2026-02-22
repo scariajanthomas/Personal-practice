@@ -1,0 +1,70 @@
+print(classify_engineer(7))
+
+print(evaluate_build(427))
+from utils import evaluate_build
+
+print(evaluate_build(200))
+print(evaluate_build(404))
+print(evaluate_build(503))
+print(evaluate_build(123))
+
+
+status_codes = [200, 404, 500, 201, 403]
+
+for code in status_codes:
+    print(code)
+
+test_cases = ["login", "signup", "logout"]
+
+for test in test_cases:
+    print("Running:", test)
+
+count = 0
+while count < 3:
+    print(count)
+    count += 1
+
+for i in range(5):
+    if i == 3:
+        break
+    print(i)
+
+
+for code in status_codes:
+    if code >= 400:
+        print(code)
+
+print(len(status_codes))
+
+Dictionaries (Critical for APIs)
+response = {
+    "status": 200,
+    "message": "Build Successful",
+    "data": {
+        "build_id": 123,
+        "duration": 45
+    },
+    #practice
+    "sample": {
+        "sam1": "text",
+        "sam2": 455,
+        "sam3": {
+            "L3a": "L3 success",
+            "L3b": 3456
+        }
+    }
+}
+
+print(response["status"])
+print(response["data"]["build_id"])
+print(response["data"]["duration"])
+print(response["sample"]["sam1"])
+print(response["sample"]["sam3"]["L3a"])
+print(response["sample"]["sam3"]["L3b"])
+
+status_codes = [200, 404, 500, 201, 403]
+
+for code in status_codes:
+    response = evaluate_build(code)
+    # print(response)
+    print(response["status"], response["result"])
