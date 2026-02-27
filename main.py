@@ -20,3 +20,8 @@ if version >= 14.0:
         print("Latest")
     else:
         print("Supported but not latest")
+
+test_cases = ["login", "signup", "logout"]
+
+for test in test_cases:
+    print("Running:", test)
