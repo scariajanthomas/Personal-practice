@@ -68,3 +68,153 @@ for code in status_codes:
     response = evaluate_build(code)
     # print(response)
     print(response["status"], response["result"])
+
+
+Loops & Conditionals
+for i in range(1,11):
+    if i%2 == 0 and i%5==0:
+        print(f"{i} is divisible by 2 and 5")
+    elif i%2 == 0:
+        print(f"{i} even")
+    else:
+        print(f"{i} odd")
+
+##
+def fun(i):
+    if i%2==0 and i%5==0:
+        return "divisible by 2 and 5"
+    elif i%2 == 0:
+        return "Even"
+    else:
+        return "Odd"
+    
+for i in range(1,11):
+    print(fun(i))
+
+for i in range (1,21):
+    if i % 4 == 0:
+        continue
+    elif i % 7 == 0:
+        break
+    else:
+        print(i)
+
+# Actually it does matter in one specific case — what about the number 28?
+# 28 is divisible by both 4 and 7. Depending on which condition is checked first, it either gets skipped or stops the loop.
+# With your current order — continue triggers, 28 is skipped, loop continues.
+# If swapped — break triggers, loop stops at 28.
+# In 1–20 this doesn't surface because 28 is out of range. But the principle matters in real code. 
+
+
+def classify(n):
+    if n%3==0 and n%5==0:
+        return "fizzbuzz"
+    elif n%3==0:
+        return "fizz"
+    elif n%5==0: 
+        return "buzz"
+    else:
+        return n
+    
+
+for i in range (1,21):
+    print(classify(i))
+
+'''
+Stage Learnings
+
+1.  Actually felt like memory refreshment, I am still not able to specify topice in specific.
+2.  Need better understanding on the practical usage of each topic (even just a brief explanation would be sufficient.)
+    Need improvement in the technical understanding side of the code.
+3.  Was actually able to and respond to questions better than expected.
+'''
+
+Brief practical context:
+
+|Concept            |Real-world usage                                                   |
+|---                |---                                                                |
+| Variables & types | Storing test data — URLs, credentials, status codes               |
+| f-strings         | Building dynamic log messages and assertions                      |
+| Loops             | Iterating over test cases, API responses, UI elements             |
+| Conditionals      | Branching test logic based on response or state                   |
+| Functions         | Reusable test steps — login, setup, teardown                      |
+| continue / break  | Controlling test execution flow, early exit on failure            |
+| Scope             | Keeping test data isolated, avoiding state leakage between tests  |
+
+**You'll see all of these in actual pytest and Selenium code — they won't feel abstract for long.
+
+---
+
+***Stage 2 
+
+#try/except:
+
+def divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        print ("Cannot divide by zero") 
+    except TypeError:
+        print("Cannot divide string value")
+
+print(divide(10, 0))
+
+#File I/O:
+
+with open("results.txt", "w") as f:
+    f.write("Test 1: Pass\n")
+    f.write("Test 2: Fail\n")
+
+def write_result(test_name, status):
+    with open("results.txt", "a") as f:
+        f.write(f"{test_name}: {status}\n")
+
+write_result("Test 1", "Pass")
+write_result("Test 2", "Fail")
+write_result("Test 3", "Pass")
+
+with open("results.txt", "r") as f:
+    content = f.read()
+    print(content)
+
+# OOP
+Class structure
+
+```python
+class User:
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def display(self):
+        # print username and password here
+```
+
+Key points:
+- `__init__` runs automatically when you create an instance
+- `self` refers to the current object
+- `self.username = username` stores the value on the object
+
+
+***
+'self` refers to the **specific instance** calling the method.
+
+When you do `user1.display()` — Python translates that to `User.display(user1)` internally. `self` is how the method knows which object's data to use.
+
+Without `self`:
+```python
+def display():
+    print(f"Username: {self.username}")  # self doesn't exist — crashes
+```
+
+With two instances:
+```python
+user1 = User("john", "secret123")
+user2 = User("jane", "pass456")
+
+user1.display()  # self = user1, prints john
+user2.display()  # self = user2, prints jane
+```
+Same method, different data — `self` is what separates them.
+---
+
