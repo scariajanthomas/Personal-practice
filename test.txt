@@ -159,6 +159,22 @@ def divide(a, b):
 
 print(divide(10, 0))
 
+List of error Types in python (Being used in current Stage of your learning path)
+
+
+| Error                 | When it happens                                   |
+|---                    |---                                                |
+| `ZeroDivisionError`   | Dividing by zero                                  |
+| `TypeError`           | Wrong data type for operation                     |
+| `IndexError`          | Accessing index that doesn't exist                |
+| `KeyError`            | Accessing a dict key that doesn't exist           |
+| `ValueError`          | Right type, wrong value (e.g. `int("abc")`)       |
+| `FileNotFoundError`   | Opening a file that doesn't exist                 |
+| `AttributeError`      | Calling a method that doesn't exist on an object  |
+
+You'll encounter all of these naturally in Stage 3 and beyond. No need to memorise — just recognise them when they appear.
+
+
 #File I/O:
 
 with open("results.txt", "w") as f:
@@ -217,4 +233,107 @@ user2.display()  # self = user2, prints jane
 ```
 Same method, different data — `self` is what separates them.
 ---
+
+
+# Sample "Class"
+
+class User:
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def display(self):
+        print(f"Username: {self.username}")
+        print(f"Password: {self.password}")
+
+    def validate(self, input_password):
+        if self.password == input_password:
+            return True
+        else:
+            return False
+
+
+
+user1 = User("john", "secret123")
+user2 = User("jane", "pass456")
+
+user1.display()
+user2.display()
+
+print(user1.validate("secret123"))
+print(user2.validate("wertyui"))
+
+# Stage 2 practice
+
+
+def get_element(lst, index):
+    try:
+        return lst[index]
+    except IndexError:
+        return "wrong indexing"
+    except TypeError:
+        return "Type not matching"
+
+
+
+get_element([1, 2, 3], 5)
+get_element("not a list", 0)
+
+def write_result(test_name, status):
+    with open("log.txt", "a") as f:
+        f.write(f"{test_name}: {status}\n")
+
+write_result("Test 1", "Pass")
+write_result("Test 2", "Fail")
+write_result("Test 3", "Pass")
+
+with open("log.txt", "r") as f:
+    for line in f:
+        if "Fail" in line:
+            print(line)
+
+
+class User:
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def display(self):
+        print(f"Username: {self.username}")
+        print(f"Password: {self.password}")
+
+    def validate(self, input_password):
+        if self.password == input_password:
+            return True
+        else:
+            return False
+    
+    def update_password(self, new_password):
+        self.password = new_password
+
+    def is_admin(self):
+        if self.username == "admin":
+            return True
+        else:
+            return False
+        
+
+user1 = User("john", "secret123")
+user2 = User("jane", "pass456")
+user3 = User("admin", "password")
+user2.update_password("up-pass")
+
+user1.display()
+user2.display()
+user3.display()
+
+print(user3.is_admin())
+print(user1.is_admin())
+
+print(user1.validate("secret123"))
+print(user2.validate("wertyui"))
+
+
+
+
 
