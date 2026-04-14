@@ -1,5 +1,22 @@
+from datetime import datetime
+
+
+class Session:
+    def __init__(self):
+        self.is_active = False
+        self.login_time = None
+
+    def login(self):
+        self.is_active = True
+        self.login_time = datetime.now()
+
+    def logout(self):
+        self.is_active = False
+        self.login_time = None
+
 class User:
     def __init__(self, username, password):
+        self.session = Session()
         self.username = self.validate_username(username)
         self.password = self.validate_password(password)
 
@@ -46,3 +63,15 @@ class AdminUser(User):
                 return
         raise ValueError(f"User '{username}' not found")
     
+
+
+if __name__ == "__main__":
+    user1 = User("luci", "luci123")
+    user1.display()
+    user1.session.login()
+    print(user1.session.is_active)
+    user2 = AdminUser("admin", "adminpass")
+    user2.change_username("Admina")
+    print(user2.username)
+    user2.session.logout()
+    print(user2.session.is_active)

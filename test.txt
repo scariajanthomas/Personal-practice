@@ -334,6 +334,21 @@ print(user1.validate("secret123"))
 print(user2.validate("wertyui"))
 
 
+# Inheritance and Composition
+
+Inheritance — "is a" relationship
+AdminUser is a User. It gets everything User has and adds more.
+pythonclass AdminUser(User):  # AdminUser IS a User
+    pass
+
+Composition — "has a" relationship
+User has a Session. Session is a separate class, stored inside User as an attribute.
+pythonclass Session:
+    pass
+
+class User:
+    def __init__(self):
+        self.session = Session()  # User HAS a Session
 
 
 
